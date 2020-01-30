@@ -1,0 +1,39 @@
+body{
+  margin:  0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.main{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 50vw;
+  background-color: rgba(240, 128, 128, 0.856);
+
+}
+.container-fluid{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.card{
+  height: 70vh;
+  width: 70vw;
+}
+
+.clip{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(135, 206, 250, 0.199);
+  clip-path: polygon(23% 0, 100% 0, 100% 100%, 48% 100%);
+}
+.card .row .col{
+  height: 70vh;
+}

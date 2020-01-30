@@ -1,0 +1,191 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation2.ejs') %>
+   <div class="bg"></div>
+
+    <main class="d-flex justify-content-center pt-5 pb-5">
+         <div class="data border rounded-lg w-75 mt-4 p-5 bg-light shadow-lg">
+            <h1 class="text-warning py-4 mx-auto d-flex justify-content-center">Fill the right Detail and get Order</h1>
+        
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <div class="row">
+        <div class="col">
+
+        <form class="form p-5  mx-2 selling-form w-100" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST" enctype="multipart/form-data">
+
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'title') ? 'form-control invalid' : 'form-control' %>"
+                    type="text" 
+                    name="title" 
+                    id="title" 
+                    placeholder="Book Title"
+                    value="<% if (editing || hasError) { %><%= product.title %><% } %>">
+
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'author') ? 'form-control invalid' : 'form-control' %> mt-3"
+                    type="text" 
+                    name="author" 
+                    id="author" 
+                    placeholder="Author"
+                    value="<% if (editing || hasError) { %><%= product.author %><% } %>">
+
+                <div class="row mt-3">
+                    <div class="col">
+                    <input 
+                        class="<%= validationErrors.find(e => e.param === 'edition') ? 'form-control invalid' : 'form-control' %>"
+                        type="text" 
+                        name="edition" 
+                        id="edition" 
+                        placeholder="Edition"
+                        value="<% if (editing || hasError) { %><%= product.edition %><% } %>">
+                    </div>
+                    <div class="col">
+                    <input 
+                        class="<%= validationErrors.find(e => e.param === 'publisher') ? 'form-control invalid' : 'form-control' %>"
+                        type="text" 
+                        name="publisher" 
+                        id="publisher" 
+                        placeholder="Publisher"
+                        value="<% if (editing || hasError) { %><%= product.publisher %><% } %>">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                    <input 
+                        class="<%= validationErrors.find(e => e.param === 'language') ? 'form-control invalid' : 'form-control' %>"
+                        type="text" 
+                        name="language" 
+                        id="language" 
+                        placeholder="Language"
+                        value="<% if (editing || hasError) { %><%= product.language %><% } %>">
+                    </div>
+                    <div class="col">
+                    <input 
+                        class="<%= validationErrors.find(e => e.param === 'pages') ? 'form-control invalid' : 'form-control' %>"
+                        type="number" 
+                        name="pages" 
+                        id="pages" 
+                        placeholder="pages"
+                        value="<% if (editing || hasError) { %><%= product.pages %><% } %>">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                    <input 
+                        class="<%= validationErrors.find(e => e.param === 'isbn') ? 'form-control invalid' : 'form-control' %>"
+                        type="text" 
+                        name="isbn" 
+                        id="isbn" 
+                        placeholder="ISBN Number"
+                        value="<% if (editing || hasError) { %><%= product.isbn %><% } %>">
+                    </div>
+                    <div class="col">
+                    <input 
+                        class="<%= validationErrors.find(e => e.param === 'price') ? 'form-control invalid' : 'form-control' %>"
+                        type="number" 
+                        name="price" 
+                        id="price" 
+                        placeholder="Price"
+                        value="<% if (editing || hasError) { %><%= product.price %><% } %>">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <input 
+                            class="<%= validationErrors.find(e => e.param === 'condition') ? 'form-control invalid' : 'form-control' %>"
+                            type="text" 
+                            name="condition" 
+                            id="condition" 
+                            placeholder="Condition (eg. Like New, Good, Acceptable)"
+                            value="<% if (editing || hasError) { %><%= product.condition %><% } %>">
+                    </div>
+                    <div class="col">
+                    <input 
+                        class="<%= validationErrors.find(e => e.param === 'category') ? 'form-control invalid' : 'form-control' %>"
+                        type="text" 
+                        name="category" 
+                        id="category" 
+                        placeholder="Category"
+                        value="<% if (editing || hasError) { %><%= product.category %><% } %>">
+                    </div>
+                </div>
+            
+                <div class="row mt-3">
+                    
+                    <div class="col">
+                            <input 
+                            type="file"
+                            name="image" 
+                            id="image" >
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col">
+                            <textarea 
+                            class="<%= validationErrors.find(e => e.param === 'description') ? 'form-control invalid' : 'form-control' %>"
+                            name="description" 
+                            placeholder="Some Description"
+                            id="description" 
+                            rows="5"><% if (editing || hasError) { %><%= product.description %><% } %></textarea>
+                    </div>
+                </div>
+                
+
+            <% if (editing) { %>
+                <input type="hidden" value="<%= product._id %>" name="productId">
+            <% } %>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        </div>
+        <div class="col">
+
+        <input 
+            class="<%= validationErrors.find(e => e.param === 'firstname') ? 'form-control invalid' : 'form-control' %> mt-4"
+            type="text" 
+            name="firstname" 
+            id="firstname" 
+            placeholder="Name"
+            value="<% if (editing || hasError) { %><%= product.firstname %><% } %>">
+
+            <input 
+            class="<%= validationErrors.find(e => e.param === 'email') ? 'form-control invalid' : 'form-control' %> mt-3"
+            type="text" 
+            name="email" 
+            id="email" 
+            placeholder="Email Address"
+            value="<% if (editing || hasError) { %><%= product.email %><% } %>">
+            
+            <input 
+            class="<%= validationErrors.find(e => e.param === 'mobile') ? 'form-control invalid' : 'form-control' %> mt-3"
+            type="text" 
+            name="mobile" 
+            id="mobile" 
+            placeholder="Contact Number"
+            value="<% if (editing || hasError) { %><%= product.mobile %><% } %>">
+
+            <textarea 
+                class="<%= validationErrors.find(e => e.param === 'address') ? 'form-control invalid' : 'form-control' %> mt-3"
+                name="address" 
+                placeholder="Address"
+                id="address" 
+                rows="5"><% if (editing || hasError) { %><%= product.address %><% } %></textarea>
+
+
+            <button class="btn btn-outline-primary btn-block mt-3" type="submit"><% if (editing) { %>Update Product<% } else { %>Add Product<% } %></button>
+
+        </form>
+    </div>
+</div>
+         </div>
+    </main>
+<%- include('../includes/end.ejs') %>

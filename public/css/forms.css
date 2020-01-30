@@ -1,0 +1,24 @@
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline-color: #00695c;
+}
+
+.form-control input.invalid,
+.form-control textarea.invalid {
+  border-color: red;
+}
+
+main{
+  height: 100vh;
+}
+
+.bg{
+  -webkit-clip-path: polygon(100% 0, 100% -82%, 45% 100%, 0 100%, 0 0);
+  clip-path: polygon(100% 0, 100% -82%, 45% 100%, 0 100%, 0 0);
+background: #4545F3;
+height: 100vh;
+width: 100%;
+position: absolute;
+z-index: -1;
+}

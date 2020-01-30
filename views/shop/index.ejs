@@ -1,0 +1,67 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <%- include('../includes/landing.ejs') %>
+
+
+    <main>
+        <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for (let product of prods) { %>
+                    <article class="card product-item p-2">
+                        <div class="card__image">
+                            <img src="/<%= product.imageUrl %>"
+                                alt="<%= product.title %>" height="300">
+                        </div>
+
+                        <div class="card-body">
+                            <h4 class="card-title"><%= product.title %> - (<%= product.category %>)</h4>
+                            <div class="row">
+                                <div class="col">
+                                        <p class="lead">Author : <%= product.author %></p>
+
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="lead">Only At <span class="btn btn-warning"><i class="fas fa-rupee-sign"></i> <%= product.price %></span>
+                                    </p> 
+                                </div>
+                            </div>
+                            <!-- <h5><%= product.firstname %></h5>
+                            <h5>Contact No. - <%= product.mobile %></h5>
+                            <h5>Address - <%= product.address %></h5> -->
+                        </div>
+
+                        <div class="card__actions">
+                            <a href="/products/<%= product._id %>" class="btn btn-primary">Details</a>
+                            <% if (isAuthenticated) { %>
+                                <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                            <% } %>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+            <%- include('../includes/pagination.ejs', {currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage}) %>
+        <% } else { %>
+            <h1 class="text-center">No Products Found!</h1>
+        <% } %>
+    </main>
+
+    <footer class="text-light bg-dark p-5 mt-4" id="footer">
+            <div class="row justify-content-between">
+              <div class="col">
+                <h1 class="display-3 mb-4">About us</h1>
+                <p class="lead w-75">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus debitis reprehenderit molestiae quod nostrum odit, eaque eos tempore dolore. Ullam, non labore similique recusandae tempore quae. Soluta perferendis reiciendis adipisci?</p>
+              </div>
+              <div class="col">
+                <h1 class="display-3 mb-4">Join us</h1>
+                <button class="btn btn-outline-light rounded-pill px-4 py-2">Join us</button>
+              </div>
+            </div>
+          </footer>
+<%- include('../includes/end.ejs') %>

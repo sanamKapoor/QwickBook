@@ -1,0 +1,45 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+
+    <nav class="main-header__nav">
+        <a href="/" class="display-4 text-light m-2 text-decoration-none">QwickBook</a>
+        <div class="d-flex ">
+        <ul class="main-header__item-list list-unstyled list-inline">
+            <% if (isAuthenticated) { %>
+            <li class="main-header__item list-inline-item mt-2">
+                <a class="text-decoration-none text-dark" href="/cart">Cart</a>
+            </li>
+            
+            <li class="main-header__item list-inline-item mt-2">
+                <a class="text-decoration-none text-dark" href="/admin/add-product">Add Book
+                </a>
+            </li>
+            <li class="main-header__item list-inline-item mt-2">
+                <a class="text-decoration-none text-dark" href="/admin/products">History
+                </a>
+            </li>
+            <% } %>
+        </ul>
+        <ul class="main-header__item-list list-inline">
+            <% if (!isAuthenticated) { %>
+            
+            <li class="main-header__item list-inline-item">
+                <a class="btn btn-primary" href="/login">Login</a>
+            </li>
+            <li class="main-header__item list-inline-item">
+                <a class="btn btn-secondary" href="/signup">Signup</a>
+            </li>
+            <% } else { %>
+            <li class="main-header__item list-inline-item mt-2">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+    </nav>
+</header>
+
